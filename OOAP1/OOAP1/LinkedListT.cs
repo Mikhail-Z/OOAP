@@ -43,7 +43,8 @@ namespace OOAP1
         public OperationStatus FindStatus { get; private set; }
         public OperationStatus RemoveAllStatus { get; private set; }
         public OperationStatus ClearStatus { get; private set; }
-        
+        public OperationStatus AddTailStatus { get; private set; }
+
         /// <summary>    
         /// постусловие: создан пустой список, курсор указывает на null
         /// </summary>
@@ -228,6 +229,7 @@ namespace OOAP1
             ReplaceStatus = OperationStatus.NIL;
             RemoveAllStatus = OperationStatus.NIL;
             ClearStatus = OperationStatus.OK;
+            AddTailStatus = OperationStatus.OK;
         }
 
         /// <summary>
@@ -266,6 +268,7 @@ namespace OOAP1
             }
 
             tail = newNode;
+            AddTailStatus = OperationStatus.OK;
         }
 
         /// <summary>
