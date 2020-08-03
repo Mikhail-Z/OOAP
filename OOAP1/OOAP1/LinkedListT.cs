@@ -289,14 +289,13 @@ namespace OOAP1
         }
 
         /// <summary>
-        /// предусловие: список непустой и за курсором есть узел с указанным значением
-        /// постусловие: курсор установлен на следующий узел с указанным значением (по отношению к текущему узлу)
+        /// постусловие: курсор установлен на следующий узел с указанным значением (по отношению к текущему узлу) или остается на том же месте (если узел не был найден)
         /// </summary>
         public void Find(T value)
         {
             if (IsValue == false)
             {
-                FindStatus = OperationStatus.ERR;
+                FindStatus = OperationStatus.OK;
                 return;
             }
             
@@ -313,7 +312,7 @@ namespace OOAP1
                 currentNode = currentNode.next;
             }
 
-            FindStatus = OperationStatus.ERR;
+            FindStatus = OperationStatus.OK;
         }
         
         /// <summary>
@@ -349,10 +348,7 @@ namespace OOAP1
             this.cursor = newCursor;
             RemoveAllStatus = OperationStatus.OK;
         }
-
-        /// <summary>
-        /// постусловие: возврашает, указывает ли курсор на начало списка (для пустого списка возвращается false)
-        /// </summary>
+        
         public bool IsHead
         {
             get
@@ -365,10 +361,7 @@ namespace OOAP1
                 return this.head == this.cursor;
             }
         }
-
-        /// <summary>
-        /// постусловие: возврашает, указывает ли курсор на конец списка (для пустого списка возвращается false)
-        /// </summary>
+        
         public bool IsTail
         {
             get
