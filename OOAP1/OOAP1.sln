@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOAP1", "OOAP1\OOAP1.csproj", "{D037C227-0D65-4030-89DD-FE765BAE4377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOAP1.Tests", "OOAP1.Tests\OOAP1.Tests.csproj", "{BEAC74CC-A8E5-44D4-BE4B-4023ECC7764B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D037C227-0D65-4030-89DD-FE765BAE4377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D037C227-0D65-4030-89DD-FE765BAE4377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D037C227-0D65-4030-89DD-FE765BAE4377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D037C227-0D65-4030-89DD-FE765BAE4377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEAC74CC-A8E5-44D4-BE4B-4023ECC7764B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEAC74CC-A8E5-44D4-BE4B-4023ECC7764B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEAC74CC-A8E5-44D4-BE4B-4023ECC7764B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEAC74CC-A8E5-44D4-BE4B-4023ECC7764B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
