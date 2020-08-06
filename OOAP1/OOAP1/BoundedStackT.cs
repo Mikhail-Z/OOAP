@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OOAP1
+namespace OOAP1_1
 {
     /// <summary>
     /// Реализация абстрактного типа данных - Bounded Stack (стек с заданной максимальной глубиной)

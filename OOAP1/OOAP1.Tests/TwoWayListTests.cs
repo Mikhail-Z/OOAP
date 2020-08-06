@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using OOAP1;
+using OOAP1_2;
 
 namespace TwoWayList.Tests
 {

@@ -7,7 +7,7 @@
 
 using System;
 
-namespace OOAP1
+namespace OOAP1_2
 {
     public class TwoWayNode<T> where T : IComparable
     {
