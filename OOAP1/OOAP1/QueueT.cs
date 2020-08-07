@@ -31,6 +31,12 @@ namespace OOAP1_5
         private Stack<T> stack1;
         private Stack<T> stack2;
 
+        public Queue()
+        {
+            stack1 = new Stack<T>();
+            stack2 = new Stack<T>();
+        }
+        
         public OperationStatus EnqueueStatus { get; private set; } = OperationStatus.NIL;
         public OperationStatus DequeueStatus { get; private set; } = OperationStatus.NIL;
         
