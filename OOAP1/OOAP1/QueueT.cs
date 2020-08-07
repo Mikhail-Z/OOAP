@@ -6,17 +6,22 @@ namespace OOAP1_5
     public interface IQueue<T>
     {
         /// <summary>
-        /// постусловие: в очередь добавлен новый элемент с указанным значением
+        /// постусловие: в конец очереди добавлен новый элемент с указанным значением
         /// </summary>
         void Enqueue(T item);
         
         /// <summary>
         /// предусловие: очередь непустая
-        /// постусловие: удален первый добавленный из существующих элемент
+        /// постусловие: из начала очереди удален элемент
         /// </summary>
         T Dequeue();
         
         int Size();
+
+        /// <summary>
+        /// предусловие: список непустой
+        /// </summary>
+        T Head();
     }
     
     public enum OperationStatus
@@ -39,6 +44,7 @@ namespace OOAP1_5
         
         public OperationStatus EnqueueStatus { get; private set; } = OperationStatus.NIL;
         public OperationStatus DequeueStatus { get; private set; } = OperationStatus.NIL;
+        public OperationStatus HeadStatus { get; private set; } = OperationStatus.NIL;
         
         public void Enqueue(T item)
         {
@@ -67,7 +73,24 @@ namespace OOAP1_5
         {
             return stack1.Count + stack2.Count;
         }
-        
+
+        public T Head()
+        {
+            if (IsEmpty())
+            {
+                HeadStatus = OperationStatus.ERR; 
+                return default(T);
+            }
+            
+            if (stack2.Count == 0)
+            {
+                MoveFirstStackToSecondStack();
+            }
+
+            HeadStatus = OperationStatus.OK;
+            return stack2.Peek();
+        }
+
         private bool IsEmpty()
         {
             return Size() == 0;
