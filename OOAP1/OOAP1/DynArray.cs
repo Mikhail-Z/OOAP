@@ -15,16 +15,22 @@ namespace OOAP1_4
         void Append(T value);
         
         /// <summary>
-        /// предусловие: текущее кол-во элементов в массиве больше, равно или меньше на 1 указанноного индекса
+        /// предусловие: текущее кол-во элементов в массиве больше, равно или меньше на 1 указанноного индексу
         /// постусловие: по указанному индексу добавлен новый элемент, при этом элементы правее сдвигаются
         /// </summary>
         void Insert(T value, int index);
         
         /// <summary>
-        /// предусловие: текущее кол-во элементов в массиве больше или равно указанному индекса
+        /// предусловие: текущее кол-во элементов в массиве больше или равно указанному индексу
         /// постусловие: удален элемент по указанному индексу, элементы правее сдвинулись левее
         /// </summary>
         void Remove(int index);
+
+        /// <summary>
+        /// предусловие: текущее кол-во элементов в массиве больше или равно указанному индексу
+        /// постусловие: значение элементы по указанному индексу стало равно указанному значению
+        /// </summary>
+        void ChangeItem(int index, T value);
     }
     
     public enum OperationStatus
@@ -43,12 +49,12 @@ namespace OOAP1_4
         private const int MIN_CAPACITY = 16;
         private const int MAGNIFICATION_FACTOR = 2;
         private const double REDUCTION_FACTOR = 1.5;
-        
-        public OperationStatus GetItemStatus { get; private set; }
-        public OperationStatus AppendStatus { get; private set; }
-        public OperationStatus InsertStatus { get; private set; }
-        public OperationStatus RemoveStatus { get; private set; }
-        
+
+        public OperationStatus GetItemStatus { get; private set; } = OperationStatus.NIL;
+        public OperationStatus AppendStatus { get; private set; } = OperationStatus.NIL;
+        public OperationStatus InsertStatus { get; private set; } = OperationStatus.NIL;
+        public OperationStatus RemoveStatus { get; private set; } = OperationStatus.NIL;
+        public OperationStatus ChangeItemStatus { get; private set; } = OperationStatus.NIL;
         private DynArray() : this(MIN_CAPACITY)
         {
         }
@@ -131,6 +137,18 @@ namespace OOAP1_4
             }
 
             RemoveStatus = OperationStatus.OK;
+        }
+
+        public void ChangeItem(int index, T value)
+        {
+            if (index < 0 || index >= count)
+            {
+                ChangeItemStatus = OperationStatus.ERR;
+                return;
+            }
+
+            array[index] = value;
+            ChangeItemStatus = OperationStatus.OK;
         }
 
         private void MakeArray(int newCapacity)
