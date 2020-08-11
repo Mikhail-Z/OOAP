@@ -151,4 +151,31 @@ namespace OOAP1
             }
         }
     }
+
+    public interface IHashTableFactory
+    {
+        /// <summary>
+        /// постусловие: создает новый экземляр хэш-таблицы
+        /// </summary>
+        IHashTable Create(int size);
+    }
+    
+    public class HashTableFactory : IHashTableFactory
+    {
+        public OperationStatus CreateStatus { get; private set; } = OperationStatus.NIL;
+        
+        public IHashTable Create(int size)
+        {
+            if (size <= 0)
+            {
+                CreateStatus = OperationStatus.ERR;
+                return default;
+            }
+            else
+            {
+                CreateStatus = OperationStatus.OK;
+                return new HashTable(size);
+            }
+        }
+    }
 }
