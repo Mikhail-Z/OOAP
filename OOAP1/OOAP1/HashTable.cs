@@ -31,7 +31,7 @@ namespace OOAP1_7
         private int size;
         private int step;
         private string[] slots;
-
+    
         private const int DEFAULT_STEP = 9;
 
         public OperationStatus PutStatus { get; private set; } = OperationStatus.NIL;
