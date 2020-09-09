@@ -70,3 +70,66 @@ class Employee {
         this.position = position;
     }
 }
+
+//-------------------------------------------------------------------------------------
+//Напишите небольшой пример кода с комментариями, где в наследовании применяется как расширение класса-родителя, так и специализация класса-родителя.
+class Task02 {
+
+}
+
+//пример наследования как расширения класса-родителя
+class PhotoCamera {
+    public void makePhoto() {
+        System.out.println("making photo");
+    }
+}
+
+//наследник расширяет и частично изменяет поведение родителя
+class VideoCamera extends PhotoCamera {
+    public void makeVideo() {
+        System.out.println("making video");
+    }
+
+    @Override
+    public void makePhoto() {
+        System.out.println("changing mode...");
+        super.makePhoto();
+    }
+}
+
+//пример наследования как специализации, когда базовый класс задает каркас поведения
+abstract class BackgroundService {
+    private int delaySec;
+
+    public BackgroundService(int delaySec) {
+        this.delaySec = delaySec;
+    }
+
+    public void start() {
+        while (true) {
+            process();
+            try {
+                Thread.sleep(delaySec * 1000);
+            }
+            catch (InterruptedException ex) {
+                break;
+            }
+        }
+    }
+
+    protected abstract void process();
+}
+
+//а дочерний класс уточняет, конкретизирует поведение
+class EmailSendingBackgroundService extends BackgroundService {
+
+    public EmailSendingBackgroundService(int delaySec) {
+        super(delaySec);
+    }
+
+    @Override
+    protected void process() {
+        System.out.println("sending emails");
+    }
+}
+
