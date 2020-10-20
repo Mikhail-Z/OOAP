@@ -98,7 +98,7 @@ class Task09_10 {
 
             test2.deepCopy(test);
 
-            Class<?> type = test2.getClass();
+            Class<?> type = test2.getType();
 
             var json = test2.serialize();
             var originalTest2 = Any.deserialize(json, type);
