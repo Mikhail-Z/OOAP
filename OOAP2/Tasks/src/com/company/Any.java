@@ -33,7 +33,7 @@ class General implements Serializable {
         return mapper.writeValueAsString((T)this);
     }
 
-    public static  <T> T deserialize(String json, Class<T> clazz) throws JsonProcessingException {
+    public static <T> T deserialize(String json, Class<T> clazz) throws JsonProcessingException {
         var mapper = new ObjectMapper();
         return mapper.readValue(json, clazz);
     }
@@ -53,7 +53,7 @@ class General implements Serializable {
     }*/
 
     @JsonIgnore
-    public Class<?> getType() {
+    public final Class<?> getType() {
         return this.getClass();
     }
 
@@ -87,10 +87,27 @@ class Test extends Any {
 class Test2 extends Any {
     public int a = 2;
     public String b = "test2";
+
+
+    //cannot override: overridden method is final
+    /*@Override
+    public Class<?> getType() {
+        return super.getType();
+    }*/
 }
 
 class Task09_10 {
     public static void main(String[] args) {
+
+    }
+
+    /*
+    Постройте в вашем языке программирования базовую иерархию из двух классов General и Any.
+    Унаследуйте General от универсального базового класса, если таковой имеется в языке или стандартной
+    библиотеке/фреймворке, и реализуйте семь фундаментальных операций для него, используя для этого по возможности
+    возможности стандартных библиотек.
+     */
+    private static void Task09() {
         try {
             var test = new Test();
             Test test2 = test.deepClone();
@@ -103,10 +120,20 @@ class Task09_10 {
             var json = test2.serialize();
             var originalTest2 = Any.deserialize(json, type);
 
-            System.out.println(originalTest2 instanceof Any);
+            System.out.println(originalTest2 instanceof Test); //true
+            System.out.println(originalTest2 instanceof Any); //true
+            System.out.println(originalTest2 instanceof Test2); //false
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /*
+    Выясните, имеется ли в вашем языке программирования возможность запрета переопределения методов в потомках,
+    и приведите пример кода.
+     */
+    private static void Task10() {
+        //метод getType объявлен финальным -- поэтому переопределить его в классе-наследнике нельзя
     }
 }
