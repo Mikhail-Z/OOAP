@@ -89,7 +89,7 @@ class Test2 extends Any {
     public String b = "test2";
 }
 
-class Task08_09 {
+class Task09_10 {
     public static void main(String[] args) {
         try {
             var test = new Test();
