@@ -75,12 +75,15 @@ class General implements Serializable {
 
 
     public static <TFrom extends Any, TTo extends Any>
-            TTo assignmentAttempt(TFrom from, Class<TTo> classTo) {
+            TTo assignmentAttempt(TFrom from, TTo to) {
 
         var classFrom = from.getType();
+        var classTo = to.getType();
         if (classTo.isAssignableFrom(classFrom)) {
             return (TTo) from;
         }
+        //в java в отличие от python или c++ нет множественного наследования, поэтому возвращаю null,
+        // a не None (который тоже здесь описан)
         return null;
     }
 }
@@ -124,6 +127,11 @@ public class Task10_12 {
        task11();
     }
 
+    /*
+     Если используемый вами язык программирования допускает множественное наследование,
+     постройте небольшую иерархию, используя уже готовые General и Any,
+     и замкните её снизу классом None. Приведите пример полиморфного использования Void.
+     */
     private static void task10() {
         Any any = Test11.getSome();
         if (any instanceof None) {
@@ -132,14 +140,18 @@ public class Task10_12 {
         Test11.setSome(any);
     }
 
+    /*
+     Добавьте в классы General и Any попытку присваивания и её реализацию
+     */
     private static void task11() {
-        A a;
+        A a = new A();
         B b = new B();
-        a = Any.assignmentAttempt(b, A.class);
-        System.out.println(a instanceof B);
+        a = Any.assignmentAttempt(b, a);
+        System.out.println(a instanceof B); //true
         a = new A();
-        b = Any.assignmentAttempt(a, B.class);
-        System.out.println(b instanceof A);
+        b = new B();
+        b = Any.assignmentAttempt(a, b); //null
+        System.out.println(b instanceof A); //false
     }
 
     private static void task12() {
