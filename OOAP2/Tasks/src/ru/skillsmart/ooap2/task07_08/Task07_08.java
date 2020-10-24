@@ -1,4 +1,4 @@
-package com.company;
+package ru.skillsmart.ooap2.task07_08;
 
 import java.util.LinkedList;
 

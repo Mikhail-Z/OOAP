@@ -1,4 +1,4 @@
-package com.company;
+package ru.skillsmart.ooap2.task04_06;
 
 import java.util.Arrays;
 

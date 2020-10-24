@@ -1,4 +1,4 @@
-package com.company;
+package ru.skillsmart;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package com.company;
+package ru.skillsmart.ooap2.task09_10;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -73,7 +73,7 @@ class General implements Serializable {
     }
 }
 
-public class Any extends General {
+/*public*/ class Any extends General {
 
 }
 
