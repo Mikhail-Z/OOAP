@@ -89,11 +89,52 @@ class General implements Serializable {
 }
 
 /*public*/ class A extends Any {
+    private int a;
+    private int b;
+    private int c;
+    private int d;
+    //метод публичен в родительском классе А и публичен в его потомке B;
+    public int getA() {
+        return this.a;
+    }
 
+    //метод скрыт в родительском классе А и публичен в его потомке B;
+    protected int getB() {
+        return this.b;
+    }
+
+    //метод публичен в родительском классе А и скрыт в его потомке B -- такая видимость методов в иерархии невозможно,
+    // так как в классах-наследниках привилегия доступа у метода должны быть такой же или более слабой
+    public int getC() {
+        return this.c;
+    }
+
+    //метод скрыт в родительском классе А и скрыт в его потомке B.
+    protected int getD() {
+        return this.d;
+    }
 }
 
 class B extends A {
+    @Override
+    public int getA() {
+        return super.getA() + 1;
+    }
 
+    @Override
+    public int getB() {
+        return this.getB() + 2;
+    }
+
+    /*@Override
+    private int getC() {
+        return super.getC();
+    }*/
+
+    @Override
+    protected int getD() {
+        return super.getD() + 4;
+    }
 }
 
 class C extends Any {
@@ -125,6 +166,7 @@ public class Task10_12 {
     public static void main(String[] args) {
        task10();
        task11();
+       task12();
     }
 
     /*
@@ -154,7 +196,11 @@ public class Task10_12 {
         System.out.println(b instanceof A); //false
     }
 
+    /*
+    Разберитесь, какие из четырёх вариантов скрытия методов доступны в используемом вами языке программирования.
+    Приведите примеры кода для каждого из доступных вариантов.
+     */
     private static void task12() {
-
+        //Примеры приведены классами A и B
     }
 }
