@@ -141,7 +141,7 @@ class C extends Any {
 
 }
 
-class Any extends General {
+public class Any extends General {
 
 }
 
@@ -162,7 +162,7 @@ class Test11 {
     }
 }
 
-public class Task10_12 {
+class Task10_12 {
     public static void main(String[] args) {
        task10();
        task11();
