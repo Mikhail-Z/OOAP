@@ -3,6 +3,7 @@ package ru.skillsmart.ooap2.task13;
 import com.google.common.collect.Streams;
 import ru.skillsmart.ooap2.task11_12.Any;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ abstract class Summable extends Any {
     abstract void sum(Summable number);
     abstract int getLength();
     abstract OperationResult getSumOperationResult();
-
+    abstract List<Summable> getValues();
 }
 
 public class Vector<T extends Summable> extends Summable {
@@ -37,14 +38,23 @@ public class Vector<T extends Summable> extends Summable {
     @Override
     public void sum(Summable v2) {
         if (v2 == null) {
-            throw new IllegalArgumentException();
+            this.addOperationResult = OperationResult.FAILURE;
         }
 
         if (v2.getLength() != this.getLength()) {
+            this.addOperationResult = OperationResult.FAILURE;
             return;
         }
 
-        if (v2 instanceof Vector) {
+        this.values = Streams.zip(this.getValues().stream(), v2.getValues().stream(),
+                (a, b) ->  {
+                    a.sum(b);
+                    return a;
+                }).collect(Collectors.toList());
+        this.addOperationResult = OperationResult.SUCCESS;
+        return;
+
+        /*if (v2 instanceof Vector) {
             var v = (Vector<Summable>)v2;
             if (this.values.size() != v.values.size()) {
                 addOperationResult = OperationResult.FAILURE;
@@ -61,8 +71,9 @@ public class Vector<T extends Summable> extends Summable {
             for (var i : this.values) {
                 i.sum(myInt);
             }
+            this.addOperationResult = OperationResult.SUCCESS;
             return;
-        }
+        }*/
     }
 
     @Override
@@ -73,6 +84,11 @@ public class Vector<T extends Summable> extends Summable {
     @Override
     public OperationResult getSumOperationResult() {
         return addOperationResult;
+    }
+
+    @Override
+    List<Summable> getValues() {
+        return this.values;
     }
 }
 
@@ -99,6 +115,7 @@ class MyInt extends Summable {
         }
 
         this.value += myInt.value;
+        addOperationResult = OperationResult.SUCCESS;
     }
 
     @Override
@@ -109,6 +126,13 @@ class MyInt extends Summable {
     @Override
     OperationResult getSumOperationResult() {
         return this.addOperationResult;
+    }
+
+    @Override
+    List<Summable> getValues() {
+        var list = new ArrayList<Summable>();
+        list.add(new MyInt(this.value));
+        return list;
     }
 }
 
