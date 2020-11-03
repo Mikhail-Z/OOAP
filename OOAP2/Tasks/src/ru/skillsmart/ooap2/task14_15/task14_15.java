@@ -135,7 +135,7 @@ class EngineeringCalculator extends Calculator {
 }
 
 
-public class task14 {
+public class task14_15 {
     public static void main(String[] args) {
         task14();
         task15();
