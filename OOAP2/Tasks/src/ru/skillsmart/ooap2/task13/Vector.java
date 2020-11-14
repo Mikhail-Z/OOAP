@@ -52,28 +52,6 @@ public class Vector<T extends Summable> extends Summable {
                     return a;
                 }).collect(Collectors.toList());
         this.addOperationResult = OperationResult.SUCCESS;
-        return;
-
-        /*if (v2 instanceof Vector) {
-            var v = (Vector<Summable>)v2;
-            if (this.values.size() != v.values.size()) {
-                addOperationResult = OperationResult.FAILURE;
-            }
-            this.values = Streams.zip(this.values.stream(), v.values.stream(),
-                    (a, b) ->  {
-                        a.sum(b);
-                        return a;
-                    }).collect(Collectors.toList());
-            this.addOperationResult = OperationResult.SUCCESS;
-            return;
-        } else if (v2 instanceof MyInt) {
-            var myInt = (MyInt)v2;
-            for (var i : this.values) {
-                i.sum(myInt);
-            }
-            this.addOperationResult = OperationResult.SUCCESS;
-            return;
-        }*/
     }
 
     @Override

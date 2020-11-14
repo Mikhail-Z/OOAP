@@ -1,6 +1,8 @@
 package ru.skillsmart.ooap2.task18;
 
 class Scales {
+    int a;
+
 
 }
 
@@ -42,6 +44,7 @@ class JetBoard extends SurfingBoard {
 
 
 public class task18 {
+
     public static void main(String[] args) {
         task18();
     }
